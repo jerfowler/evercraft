@@ -27,7 +27,7 @@ describe('Damage', () => {
         assert.equal(steve.hit(20), hitPoints-2);
     });
 
-    it('damage is doubled on critical hit', () => {
+    it('hit points are zero, character is dead', () => {
         const steve = new character();
         steve.hit(20);
         steve.hit(20);

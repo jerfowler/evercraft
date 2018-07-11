@@ -1,5 +1,7 @@
 const alignments = ['Good', 'Neutral', 'Evil'];
 
+const isValidAttributeScore = (val) => (!isNaN(val) && val > 0 && val < 21);
+
 class character {
 
     constructor() {
@@ -41,16 +43,6 @@ class character {
       return this._armor;
     }
 
-    canAttack(roll) {
-        return this._armor <= roll;
-    }
-
-    hit(roll) {
-        if (this.canAttack(roll)) {
-            return this._hitPoints -= roll === 20 ? 2 : 1;
-        }
-    }
-
     get strength() {
         return this._abilities.strength;
     }
@@ -76,21 +68,25 @@ class character {
     }
 
     set strength(val) {
-        if (!isNaN(val) && val > 0 && val < 21) {
-            this._abilities.strength = val;
-        }
+      if (!isValidAttributeScore(val)) {
+        throw 'Not valid attribute score!';
+      }
+      this._abilities.strength = val;
     }
 
     set dexterity(val) {
-        if (!isNaN(val) && val > 0 && val < 21) {
-            this._abilities.dexterity = val;
-        }
+      if (!isValidAttributeScore(val)) {
+        throw 'Not valid attribute score!';
+      }
+      this._abilities.dexterity = val;
+
     }
 
     set constitution(val) {
-        if (!isNaN(val) && val > 0 && val < 21) {
-            this._abilities.constitution = val;
-        }
+      if (!isValidAttributeScore(val)) {
+        throw 'Not valid attribute score!';
+      }
+      this._abilities.constitution = val;
     }
 
     set wisdom(val) {
@@ -110,6 +106,22 @@ class character {
             this._abilities.charisma = val;
         }
     }
+
+    canAttack(roll) {
+        return this._armor <= roll;
+    }
+
+    hit(roll) {
+        if (this.canAttack(roll)) {
+            return this._hitPoints -= roll === 20 ? 2 : 1;
+        }
+    }
+
+    getModifier(ability) {
+      const score = this._abilities[ability];
+      return modifiers[score];
+    }
+
 }
 
 module.exports = character;

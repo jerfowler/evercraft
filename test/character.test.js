@@ -82,4 +82,16 @@ describe('Abilities', () => {
       assert.equal(sam.strength, 10);
   });
 
+  describe('Abilities have modifiers', () => {
+    const modifiers = [null,-5,-4,-4,-3,-3,-2,-2,-1,-1,0,0,1,1,2,2,3,3,4,4,5];
+
+    modifiers.forEach((val, idx) => {
+      if (idx === 0) return;
+      it(`returns ${val} for ability score of ${idx}`, () => {
+        const sam = new character();
+        sam.strength = idx;
+        assert.equal(sam.getModifier('strength'), val);
+      });
+    });
+  });
 });
