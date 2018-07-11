@@ -87,4 +87,24 @@ describe('Abilities', () => {
       });
     });
   });
+
+  describe('Constitution modifier', () => {
+      it('adds hit points with a positive modifier', () => {
+        const sam = new character();
+        sam.constitution = 14;  // +2 modifier
+        assert.equal(sam.hitPoints, 7);
+      });
+
+      it('removes hit points with a negative modifier', () => {
+          const sam = new character();
+          sam.constitution = 6;  // -2 modifier
+          assert.equal(sam.hitPoints, 3);
+      });
+
+      it('always has a minimum of 1 hit point', () => {
+          const sam = new character();
+          sam.constitution = 1;  // -5 modifier
+          assert.equal(sam.hitPoints, 1);
+      });
+  });
 });
