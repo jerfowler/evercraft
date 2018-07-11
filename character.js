@@ -37,6 +37,12 @@ class character {
         return this._armor <= roll;
     }
 
+    hit(roll) {
+        if (this.canAttack(roll)) {
+            return this._hitPoints -= roll === 20 ? 2 : 1;
+        }
+    }
+
 }
 
 module.exports = character;
