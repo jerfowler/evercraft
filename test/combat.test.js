@@ -35,4 +35,32 @@ describe('Damage', () => {
         assert.ok(steve.hitPoints <= 0, 'character is dead');
     });
 
+    describe('Modifiers', () => {
+
+        it('should add modifier to damage dealt', () => {
+            const steve = new character();
+            const bob = new character();
+            steve.strength = 15;  // +2 attack modifier
+            steve.attack(bob, 15);
+            assert.equal(bob.hitPoints, 2);  // 5 HP - (1 + 2) = 2 HP
+
+        });
+
+        it('should double the strength modifier on critical hits', () => {
+            const steve = new character();
+            const bob = new character();
+            steve.strength = 15;  // +2 attack modifier
+            steve.attack(bob, 20);
+            assert.ok(bob.hitPoints <= 0);  // 5 HP - (2 + 4) = -1 HP
+        });
+
+        it('should have a minimum damage of 1', () => {
+            const steve = new character();
+            const bob = new character();
+            steve.strength = 6;  // -2 attack modifier
+            steve.attack(bob, 15);
+            assert.equal(bob.hitPoints, 4);
+        });
+    });
+
 });
