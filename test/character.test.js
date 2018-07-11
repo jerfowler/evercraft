@@ -51,14 +51,28 @@ describe('Abilities', () => {
 
   it('cannot be set greater than 20', () => {
     const sam = new character();
-    sam.strength = 21;
-    assert.equal(sam.strength, 10);
+
+    try {
+        sam.strength = 21;
+        assert.notEqual(sam.strength, 21)
+    } catch (e) {
+        assert.equal(sam.strength, 10);
+        assert.equal(e.message, "Not valid attribute score!")
+    }
+
   });
 
   it('cannot be set less than 1', () => {
       const sam = new character();
-      sam.strength = 0;
-      assert.equal(sam.strength, 10);
+
+      try {
+          sam.strength = 0;
+          assert.notEqual(sam.strength, 0)
+      } catch (e) {
+          assert.equal(sam.strength, 10);
+          assert.equal(e.message, "Not valid attribute score!")
+      }
+
   });
 
   describe('Abilities have modifiers', () => {

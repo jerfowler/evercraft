@@ -69,14 +69,14 @@ class character {
 
     set strength(val) {
       if (!isValidAttributeScore(val)) {
-        throw 'Not valid attribute score!';
+          throw new Error('Not valid attribute score!');
       }
       this._abilities.strength = val;
     }
 
     set dexterity(val) {
       if (!isValidAttributeScore(val)) {
-        throw 'Not valid attribute score!';
+          throw new Error('Not valid attribute score!');
       }
       this._abilities.dexterity = val;
 
@@ -84,27 +84,30 @@ class character {
 
     set constitution(val) {
       if (!isValidAttributeScore(val)) {
-        throw 'Not valid attribute score!';
+        throw new Error('Not valid attribute score!');
       }
       this._abilities.constitution = val;
     }
 
     set wisdom(val) {
-        if (!isNaN(val) && val > 0 && val < 21) {
-            this._abilities.wisdom = val;
+        if (!isValidAttributeScore(val)) {
+            throw new Error('Not valid attribute score!');
         }
+        this._abilities.wisdom = val;
     }
 
     set intelligence(val) {
-        if (!isNaN(val) && val > 0 && val < 21) {
-            this._abilities.intelligence = val;
+        if (!isValidAttributeScore(val)) {
+            throw new Error('Not valid attribute score!');
         }
+        this._abilities.intelligence = val;
     }
 
     set charisma(val) {
-        if (!isNaN(val) && val > 0 && val < 21) {
-            this._abilities.charisma = val;
+        if (!isValidAttributeScore(val)) {
+            throw new Error('Not valid attribute score!');
         }
+        this._abilities.charisma = val;
     }
 
     canAttack(roll) {
@@ -118,8 +121,11 @@ class character {
     }
 
     getModifier(ability) {
-      const score = this._abilities[ability];
-      return modifiers[score];
+        if (this._abilities.hasOwnProperty(ability)) {
+            return Math.floor((this._abilities[ability]-10)/2);
+        } else {
+            throw `Ability ${ability} does not exist`;
+        }
     }
 
 }
