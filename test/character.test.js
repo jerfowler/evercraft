@@ -5,7 +5,8 @@ const evil = 'Evil';
 
 describe('Character', () => {
   it('it can get a name', () => {
-    const jeremy = new character(name);
+    const jeremy = new character();
+    jeremy.name = name;
     assert.equal(jeremy.name, name);
   });
 
@@ -18,7 +19,7 @@ describe('Character', () => {
 
 describe('Alignment', () => {
   it('can get and set alignment', () => {
-    const john = new character('John');
+    const john = new character();
     john.alignment = evil;
     asert.equal(john.alignment, evil);
   });
