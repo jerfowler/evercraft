@@ -1,0 +1,24 @@
+{
+  "name": "evercraft",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "nyc mocha test/ --timeout 5000 --recursive --exit --colors"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jerfowler/evercraft.git"
+  },
+  "author": "Jeremy Fowler <jeremy.f76@gmail.com> (https://github.com/jerfowler)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jerfowler/evercraft/issues"
+  },
+  "homepage": "https://github.com/jerfowler/evercraft#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "mocha": "^5.2.0",
+    "nyc": "^12.0.2"
+  }
+}
