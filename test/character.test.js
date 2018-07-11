@@ -72,13 +72,13 @@ describe('Abilities', () => {
 
   it('cannot be set greater than 20', () => {
     const sam = new character();
-    sam.abilities.strength = 21;
+    sam.strength = 21;
     assert.equal(sam.strength, 10);
   });
 
   it('cannot be set less than 1', () => {
       const sam = new character();
-      sam.abilities.strength = 0;
+      sam.strength = 0;
       assert.equal(sam.strength, 10);
   });
 

@@ -7,6 +7,14 @@ class character {
         this._alignment = 'Neutral';
         this._hitPoints = 5;
         this._armor = 10;
+        this._abilities = {
+            strength: 10,
+            dexterity: 10,
+            constitution: 10,
+            wisdom: 10,
+            intelligence: 10,
+            charisma: 10
+        };
     }
 
     get name() {
@@ -43,6 +51,65 @@ class character {
         }
     }
 
+    get strength() {
+        return this._abilities.strength;
+    }
+
+    get dexterity() {
+        return this._abilities.dexterity;
+    }
+
+    get constitution() {
+        return this._abilities.constitution;
+    }
+
+    get wisdom() {
+        return this._abilities.wisdom;
+    }
+
+    get intelligence() {
+        return this._abilities.intelligence;
+    }
+    
+    get charisma() {
+        return this._abilities.charisma;
+    }
+
+    set strength(val) {
+        if (!isNaN(val) && val > 0 && val < 21) {
+            this._abilities.strength = val;
+        }
+    }
+
+    set dexterity(val) {
+        if (!isNaN(val) && val > 0 && val < 21) {
+            this._abilities.dexterity = val;
+        }
+    }
+
+    set constitution(val) {
+        if (!isNaN(val) && val > 0 && val < 21) {
+            this._abilities.constitution = val;
+        }
+    }
+
+    set wisdom(val) {
+        if (!isNaN(val) && val > 0 && val < 21) {
+            this._abilities.wisdom = val;
+        }
+    }
+
+    set intelligence(val) {
+        if (!isNaN(val) && val > 0 && val < 21) {
+            this._abilities.intelligence = val;
+        }
+    }
+
+    set charisma(val) {
+        if (!isNaN(val) && val > 0 && val < 21) {
+            this._abilities.charisma = val;
+        }
+    }
 }
 
 module.exports = character;
