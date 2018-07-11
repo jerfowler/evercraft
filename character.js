@@ -2,12 +2,24 @@ const alignments = ['Good', 'Neutral', 'Evil'];
 
 const isValidAttributeScore = (val) => (!isNaN(val) && val > 0 && val < 21);
 
+
+class HitPoints {
+
+    constructor(base = 5, modifier = 0) {
+        this.base = base;
+        this.modifier = modifier;
+        this.current = (base + modifier < 1) ? 1 : base + modifier ;
+    }
+
+}
+
+
 class character {
 
     constructor() {
         this._name = 'name';
         this._alignment = 'Neutral';
-        this._hitPoints = 5;
+        this._hitPoints = new HitPoints();
         this._armor = 10;
         this._abilities = {
             strength: 10,
@@ -36,7 +48,7 @@ class character {
     }
 
     get hitPoints() {
-      return this._hitPoints;
+      return this._hitPoints.current;
     }
 
     get armor() {
@@ -87,6 +99,8 @@ class character {
         throw new Error('Not valid attribute score!');
       }
       this._abilities.constitution = val;
+      const modifier = this.getModifier('constitution');
+      this._hitPoints = new HitPoints(this._hitPoints.base, modifier);
     }
 
     set wisdom(val) {
@@ -119,7 +133,7 @@ class character {
         if (this.canAttack(roll)) {
             let loss = (roll === 20) ? 2 : 1;
             loss = (modifier < 0) ? 1 : loss + (modifier * loss);
-            return this._hitPoints -= loss;
+            return this._hitPoints.current -= loss;
         }
     }
 
