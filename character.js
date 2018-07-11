@@ -111,7 +111,8 @@ class character {
     }
 
     canAttack(roll) {
-        return this._armor <= roll;
+        const modifier = this.getModifier('dexterity');
+        return this._armor + modifier <= roll;
     }
 
     hit(roll, modifier = 0) {

@@ -15,13 +15,13 @@ describe('Attack', () => {
     describe('Modifiers', () => { 
         it('Negative dexterity modifier reduces armor', () => {
             const steve = new character();
-            steve.dexterity = 5 // -3 armor
-            assert.equal(steve.canAttack(10), false);
-        })
+            steve.dexterity = 5;  // -3 armor
+            assert.equal(steve.canAttack(7), true);
+        });
 
         it('Positive dexterity modifier increases armor', () => {
             const steve = new character();
-            steve.dexterity = 15 // +2 armor
+            steve.dexterity = 15;  // +2 armor
             assert.equal(steve.canAttack(10), false);
         })
     });
