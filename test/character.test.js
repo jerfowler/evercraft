@@ -40,34 +40,13 @@ describe('Alignment', () => {
 
 describe('Abilities', () => {
 
-  it('can set strength with a default of 10', () => {
-    const sam = new character();
-    assert.equal(sam.strength, 10);
-  });
+  const abilities = ['strength', 'intelligence', 'wisdom', 'dexterity', 'constitution', 'charisma'];
 
-  it('can set intelligence with a default of 10', () => {
-      const sam = new character();
-      assert.equal(sam.intelligence, 10);
-  });
-
-  it('can set wisdom with a default of 10', () => {
-      const sam = new character();
-      assert.equal(sam.wisdom, 10);
-  });
-
-  it('can set dexterity with a default of 10', () => {
-      const sam = new character();
-      assert.equal(sam.dexterity, 10);
-  });
-
-  it('can set constitution with a default of 10', () => {
-      const sam = new character();
-      assert.equal(sam.constitution, 10);
-  });
-
-  it('can set charisma with a default of 10', () => {
-      const sam = new character();
-      assert.equal(sam.charisma, 10);
+  abilities.forEach((ability) => {
+    it(`can set ${ability} with a default of 10`, () => {
+        const sam = new character();
+        assert.equal(sam[ability], 10);
+    });
   });
 
   it('cannot be set greater than 20', () => {
