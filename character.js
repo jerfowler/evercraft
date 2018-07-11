@@ -33,6 +33,10 @@ class character {
       return this._armor;
     }
 
+    canAttack(roll) {
+        return this._armor <= roll;
+    }
+
 }
 
 module.exports = character;
