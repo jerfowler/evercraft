@@ -13,3 +13,26 @@ describe('Attack', () => {
     });
 
 });
+
+describe('Damage', () => {
+    it('takes 1 point of damage when hit', () => {
+        const steve = new character();
+        const hitPoints = steve.hitPoints; 
+        assert.equal(steve.hit(11), hitPoints-1);
+    });
+
+    it('damage is doubled on critical hit', () => {
+        const steve = new character();
+        const hitPoints = steve.hitPoints; 
+        assert.equal(steve.hit(20), hitPoints-2);
+    });
+
+    it('damage is doubled on critical hit', () => {
+        const steve = new character();
+        steve.hit(20);
+        steve.hit(20);
+        steve.hit(20);
+        assert.ok(steve.hitPoints <= 0, 'character is dead');
+    });
+
+});
