@@ -114,9 +114,11 @@ class character {
         return this._armor <= roll;
     }
 
-    hit(roll) {
+    hit(roll, modifier = 0) {
         if (this.canAttack(roll)) {
-            return this._hitPoints -= roll === 20 ? 2 : 1;
+            let loss = (roll === 20) ? 2 : 1;
+            loss = (modifier < 0) ? 1 : loss + (modifier * loss);
+            return this._hitPoints -= loss;
         }
     }
 
@@ -128,6 +130,11 @@ class character {
         }
     }
 
+    attack(person, roll) {
+      const modifier = this.getModifier('strength');
+      person.hit(roll, modifier);
+    }
+
 }
 
-module.exports = character;
+module.exports = character ;
